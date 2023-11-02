@@ -104,6 +104,25 @@ cleanup="yes"  # Currently not used at the end... Too dangerous
 #   FileSet  = None   # waa - 20131020 - Is never used, but required by Bacula config parser
 #   Pool     = None   # waa - 20131020 - Is never used, but required by Bacula config parser
 # }
+#
+# -----------------------------------------------------------------
+# Example Verify_Catalog Verify Job which is called by this script:
+# -----------------------------------------------------------------
+# Job {
+#   Name = Verify_Catalog
+#   Enabled = yes
+#   Type = Verify
+#   Priority = 20               # Must be same as the Catalog job so this will not be heled "waiting for higher priorty..."
+#   Level = VolumeToCatalog     # Place holder. Verify Type/Level will be specified on the command line.
+#   JobDefs = Defaults
+#   Client = None               # Resources named 'None' here must exist in your config. They can be any already
+#   FileSet = None              # existing resource. They will be overridden on the command line.
+#   Pool = None
+#   Storage = speedy-file       # Must be correct, or specified on the command line.
+#   Schedule = Manual           # to call this verify job. See the Catalog job and this script for examples.
+#   MaximumConcurrentJobs = 5
+#   AllowDuplicateJobs = yes
+# }
 # ============================================================================================================
 
 # -------------------------------------------------------------------------
@@ -218,12 +237,12 @@ echo -e "\nFinished...\n"
 #            Automatically restore a backup job, then run all three
 #            verification jobs against it 
 #          - May be run manully or triggered in a RunScript of a job
-#
 # 20170902 - Added some more logging
-#
 # 20190129 - Changed the 'restoredir' variable to be randomly created using the
 #            mktemp utility
 #          - No longer attempt to "rm -rf" a statically named restore directory
 # 20230304 - Added Job name to the 'restoredir' variable
 # 20230614 - Minor clean up before releasing on Github.
+# 20231101 - Added back in the example Verify_Catalog job example that this script
+#            for each verify level.
 # --------------------------------------------------------------------------------
