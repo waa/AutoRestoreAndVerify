@@ -3,4 +3,4 @@ When called in a Backup job's Runscript {RunsWhen = after} it will automatically
 
 This script is meant to be used as an example of how to do these sorts of things with Bacula. It may be used as-is, or parts of it may be pulled out and used in your own custom scripts.
 
-All instructions and examples are included in the README.md file.
+All instructions and examples are included at the top of the script.
